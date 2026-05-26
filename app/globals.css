@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Montserrat:wght@200;300;400;500&display=swap');
+
+@import "tailwindcss";
+
+:root {
+  --ivory: #F5F0E8;
+  --ivory-dim: #C8BFA8;
+  --ivory-faint: #8A8070;
+  --black: #050505;
+  --near-black: #0A0A0A;
+  --charcoal: #111111;
+  --gold: #B8956A;
+  --gold-light: #D4AA7D;
+  --gold-dim: rgba(184, 149, 106, 0.3);
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Montserrat', sans-serif;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+  overscroll-behavior: none;
+}
+
+body {
+  background: var(--black);
+  color: var(--ivory);
+  font-family: var(--sans);
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+.cursor-dot {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: var(--ivory);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.cursor-ring {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(245, 240, 232, 0.35);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.5s ease, height 0.5s ease, border-color 0.4s ease;
+}
+
+.cursor-ring.expanded {
+  width: 64px;
+  height: 64px;
+  border-color: var(--gold);
+}
+
+.font-serif { font-family: var(--serif); }
+.font-sans  { font-family: var(--sans); }
+
+.gold-line {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+}
+
+@keyframes scrollDrop {
+  0%   { top: -100%; }
+  100% { top: 200%;  }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.anim-fade-up { animation: fadeUp 1.4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards; opacity: 0; }
+.anim-fade-in { animation: fadeIn 1.6s ease forwards; opacity: 0; }
+
+html.lenis { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
